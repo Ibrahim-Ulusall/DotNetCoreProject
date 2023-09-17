@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Core.Persistance.Paging;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
 namespace Core.Persistance.Repositories;
@@ -22,7 +23,7 @@ public interface IRepository<TEntity, TEntityId> : IQuery<TEntity> where TEntity
         bool withDeleted = false, bool enableTracking = true,
         int index = 0, int size = 10
         );
-    Paginage<TEntity> GetListDynamic(
+    Paginate<TEntity> GetListDynamic(
         DynamicQuery dynamic,
         Expression<Func<TEntity, bool>>? predicate = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
